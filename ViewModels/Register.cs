@@ -3,15 +3,20 @@
 namespace WebApplication1.ViewModels
 {
 	public class Register
+
+
+
 	{
 		[Required]
 		public string FullName { get; set; }
 
-		[Required]
-		[DataType(DataType.CreditCard)]
-		public string CreditCard { get; set; }
+        [Required]
+        [DataType(DataType.CreditCard)]
+        // This Regex ensures EXACTLY 16 numbers (0-9). No letters, no spaces.
+        [RegularExpression(@"^[0-9]{16}$", ErrorMessage = "Please enter a valid 16-digit credit card number")]
+        public string CreditCard { get; set; }
 
-		[Required]
+        [Required]
 		public string Gender { get; set; }
 
 		[Required]
@@ -39,5 +44,7 @@ namespace WebApplication1.ViewModels
 
 		[Required]
 		public string AboutMe { get; set; }
+
+
 	}
 }

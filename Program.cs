@@ -29,7 +29,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Login";
     options.AccessDeniedPath = "/AccessDenied";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+
+    // CHANGE THIS LINE: Set timeout to 10 seconds
+    options.ExpireTimeSpan = TimeSpan.FromSeconds(400);
+
     options.SlidingExpiration = true;
 });
 

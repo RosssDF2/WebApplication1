@@ -36,7 +36,7 @@ namespace WebApplication1.Pages
 
                     // 3. SIMULATE SENDING EMAIL (Check Visual Studio Output Window)
                     // In a real app, you would send this via SMTP
-                    System.Diagnostics.Debug.WriteLine($"RESET LINK FOR {Email}: {resetLink}");
+                    System.Diagnostics.Debug.WriteLine($"{resetLink}");
 
                     // Show success message regardless (Security Best Practice: Don't reveal if email exists)
                     TempData["Message"] = "If an account exists, a reset link has been sent.";

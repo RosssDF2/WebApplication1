@@ -43,7 +43,7 @@ namespace WebApplication1.Pages
                 var code = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
 
                 // SIMULATE EMAIL SENDING
-                System.Diagnostics.Debug.WriteLine($"2FA CODE FOR {user.Email}: {code}");
+                System.Diagnostics.Debug.WriteLine($"{code}");
             }
 
             return Page();
@@ -61,7 +61,14 @@ namespace WebApplication1.Pages
 
             if (result.Succeeded)
             {
-                // Create Audit Log
+                // 1. UPDATE SECURITY STAMP (This invalidates the OTHER browser)
+                await _userManager.UpdateSecurityStampAsync(user);
+
+                // 2. RE-SIGN IN (This ensures THIS browser gets the new valid cookie)
+                // Since we just verified 2FA, we can manually sign them in with the new stamp
+                await _signInManager.SignInAsync(user, RememberMe);
+
+                // 3. Create Audit Log
                 var auditLog = new AuditLog
                 {
                     UserId = user.Email,

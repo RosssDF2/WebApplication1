@@ -72,7 +72,12 @@
 
                 <div class="mb-3">
                     <label class="form-label text-muted small fw-bold">CREDIT CARD NO</label>
-                    <input type="text" asp-for="RModel.CreditCard" class="form-control form-control-lg border-0 bg-light" placeholder="1234 5678 1234 5678" />
+                    <input type="text"
+                           asp-for="RModel.CreditCard"
+                           class="form-control form-control-lg border-0 bg-light"
+                           placeholder="1234567812345678"
+                           maxlength="16"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     <span asp-validation-for="RModel.CreditCard" class="text-danger"></span>
                 </div>
 

@@ -1,19 +1,39 @@
 ﻿@page
 @model WebApplication1.Pages.LogoutModel
 @{
+    ViewData["Title"] = "Logout";
 }
 
 <div class="container mt-5">
-    <div class="card shadow-sm">
-        <div class="card-header bg-danger text-white">
-            <h3>Logout Confirmation</h3>
-        </div>
-        <div class="card-body">
-            <p>Are you sure you want to logout?</p>
-            <form method="post">
-                <button type="submit" asp-page-handler="Logout" class="btn btn-primary">Yes, Logout</button>
-                <button type="submit" asp-page-handler="DontLogout" class="btn btn-secondary">No, Stay</button>
-            </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-success text-white p-4">
+                    <h3 class="fw-bold mb-0">
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout Confirmation
+                    </h3>
+                    <p class="mb-0 text-white-50 small">We hope to see you again soon!</p>
+                </div>
+
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-person-x-fill display-1 text-muted"></i>
+                    </div>
+
+                    <h4 class="mb-3">Are you sure you want to leave?</h4>
+                    <p class="text-muted mb-4">You will need to login again to access your profile and fresh produce.</p>
+
+                    <form method="post" class="d-grid gap-2">
+                        <button type="submit" asp-page-handler="Logout" class="btn btn-danger btn-lg shadow-sm fw-bold">
+                            <i class="bi bi-power me-2"></i>Yes, Logout
+                        </button>
+
+                        <button type="submit" asp-page-handler="DontLogout" class="btn btn-outline-secondary btn-lg fw-bold">
+                            No, Take Me Back
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
