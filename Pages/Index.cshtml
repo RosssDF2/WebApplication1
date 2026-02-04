@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h3>Welcome, @Model.CurrentUser.FullName!</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="@Model.CurrentUser.PhotoPath" alt="Profile Photo" class="img-fluid rounded-circle mb-3" style="max-width: 200px; height: 200px; object-fit: cover;" />
+                </div>
+                <div class="col-md-8">
+                    <h4>User Profile</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4">Full Name</dt>
+                        <dd class="col-sm-8">@Model.CurrentUser.FullName</dd>
+
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">@Model.CurrentUser.Email</dd>
+
+                        <dt class="col-sm-4">Gender</dt>
+                        <dd class="col-sm-8">@Model.CurrentUser.Gender</dd>
+
+                        <dt class="col-sm-4">Mobile No</dt>
+                        <dd class="col-sm-8">@Model.CurrentUser.MobileNo</dd>
+
+                        <dt class="col-sm-4">Delivery Address</dt>
+                        <dd class="col-sm-8">@Model.CurrentUser.DeliveryAddress</dd>
+
+                        <dt class="col-sm-4 text-danger">Credit Card</dt>
+                        <dd class="col-sm-8 text-danger fw-bold">@Model.DecryptedCreditCard</dd>
+
+                        <dt class="col-sm-4">About Me</dt>
+                        <dd class="col-sm-8">@Model.CurrentUser.AboutMe</dd>
+                    </dl>
+
+                    <hr />
+                    <h4 class="text-primary"><i class="bi bi-shield-lock"></i> Security Settings</h4>
+                    <div class="d-flex align-items-center justify-content-between p-3 bg-light rounded">
+                        <div>
+                            <strong>Two-Factor Authentication (2FA)</strong>
+                            <p class="text-muted mb-0 small">Secure your account with 2 Factor Authentication.</p>
+                        </div>
+                        <form method="post" asp-page-handler="Toggle2FA">
+                            @if (Model.CurrentUser.TwoFactorEnabled)
+                            {
+                                <button type="submit" class="btn btn-danger">Disable 2FA</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-success">Enable 2FA</button>
+                            }
+                        </form>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

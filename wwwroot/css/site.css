@@ -1,0 +1,82 @@
+/* FARM THEME - site.css */
+:root {
+    --farm-green: #2e7d32; /* Deep Leaf Green */
+    --farm-light: #e8f5e9; /* Light Mint */
+    --farm-accent: #ff9800; /* Harvest Orange */
+    --farm-dark: #1b5e20; /* Forest Green */
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fdf8; /* Very subtle green tint background */
+    color: #333;
+}
+
+/* OVERRIDE BUTTONS */
+.btn-primary {
+    background-color: var(--farm-green);
+    border-color: var(--farm-dark);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: var(--farm-dark);
+        border-color: var(--farm-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+/* NAVBAR BRANDING */
+.navbar {
+    background-color: white !important;
+    border-bottom: 4px solid var(--farm-green) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    color: var(--farm-green) !important;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* NAV LINKS */
+.nav-link {
+    color: #555 !important;
+    font-weight: 500;
+}
+
+    .nav-link:hover {
+        color: var(--farm-green) !important;
+    }
+
+/* FOOTER */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: var(--farm-dark);
+    color: white;
+}
+
+    .footer a {
+        color: var(--farm-accent);
+        text-decoration: none;
+    }

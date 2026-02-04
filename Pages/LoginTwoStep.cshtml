@@ -1,0 +1,32 @@
+﻿@page
+@model WebApplication1.Pages.LoginTwoStepModel
+@{
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h3>Two-Factor Authentication</h3>
+                </div>
+                <div class="card-body">
+                    <p>Please enter the code sent to your email.</p>
+                    <form method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <input type="hidden" asp-for="RememberMe" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Security Code</label>
+                            <input asp-for="TwoFactorCode" class="form-control" autocomplete="off" />
+                            <span asp-validation-for="TwoFactorCode" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-info w-100">Verify</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

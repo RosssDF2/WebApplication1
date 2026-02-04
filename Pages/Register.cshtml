@@ -1,0 +1,118 @@
+﻿@page
+@model WebApplication1.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Join the Farm";
+}
+
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <div class="col-md-5 d-none d-md-block bg-success text-white p-5 d-flex flex-column justify-content-center align-items-center"
+             style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+            <h1 class="display-4 fw-bold mb-4">Fresh. Local. Organic.</h1>
+            <p class="lead">Join our community and get fresh produce delivered to your doorstep every morning.</p>
+        </div>
+
+        <div class="col-md-7 bg-white p-5 overflow-auto" style="max-height: 100vh;">
+            <div class="d-flex align-items-center mb-4">
+                <h2 class="text-success fw-bold">Create Account</h2>
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-muted small fw-bold">FULL NAME</label>
+                        <input type="text" asp-for="RModel.FullName" class="form-control form-control-lg border-0 bg-light" placeholder="John Doe" />
+                        <span asp-validation-for="RModel.FullName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-muted small fw-bold">EMAIL ADDRESS</label>
+                        <input type="email" asp-for="RModel.Email" class="form-control form-control-lg border-0 bg-light" placeholder="john@example.com" />
+                        <span asp-validation-for="RModel.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-muted small fw-bold">PASSWORD</label>
+                        <input type="password" asp-for="RModel.Password" class="form-control form-control-lg border-0 bg-light" id="passwordField" onkeyup="checkPasswordStrength()" />
+                        <div id="passwordFeedback" class="form-text mt-1 fw-bold"></div>
+                        <span asp-validation-for="RModel.Password" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-muted small fw-bold">CONFIRM PASSWORD</label>
+                        <input type="password" asp-for="RModel.ConfirmPassword" class="form-control form-control-lg border-0 bg-light" />
+                        <span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-muted small fw-bold">GENDER</label>
+                        <select asp-for="RModel.Gender" class="form-select form-select-lg border-0 bg-light">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <span asp-validation-for="RModel.Gender" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-muted small fw-bold">MOBILE</label>
+                        <input type="text" asp-for="RModel.MobileNo" class="form-control form-control-lg border-0 bg-light" placeholder="91234567" />
+                        <span asp-validation-for="RModel.MobileNo" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted small fw-bold">DELIVERY ADDRESS</label>
+                    <textarea asp-for="RModel.DeliveryAddress" class="form-control form-control-lg border-0 bg-light" rows="2"></textarea>
+                    <span asp-validation-for="RModel.DeliveryAddress" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted small fw-bold">CREDIT CARD NO</label>
+                    <input type="text" asp-for="RModel.CreditCard" class="form-control form-control-lg border-0 bg-light" placeholder="1234 5678 1234 5678" />
+                    <span asp-validation-for="RModel.CreditCard" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted small fw-bold">PROFILE PHOTO</label>
+                    <input type="file" asp-for="RModel.Photo" class="form-control form-control-lg border-0 bg-light" accept=".jpg" />
+                    <span asp-validation-for="RModel.Photo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted small fw-bold">ABOUT ME</label>
+                    <textarea asp-for="RModel.AboutMe" class="form-control form-control-lg border-0 bg-light" rows="3"></textarea>
+                    <span asp-validation-for="RModel.AboutMe" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg w-100 py-3 fw-bold mt-3 shadow-sm">Register Membership</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function checkPasswordStrength() {
+            var pass = document.getElementById('passwordField').value;
+            var feedback = document.getElementById('passwordFeedback');
+            var strength = 0;
+            // Logic reused from your friend's code to maintain functionality
+            if (pass.length >= 12) strength++;
+            if (/[A-Z]/.test(pass)) strength++;
+            if (/[a-z]/.test(pass)) strength++;
+            if (/[0-9]/.test(pass)) strength++;
+            if (/[^A-Za-z0-9]/.test(pass)) strength++;
+
+            var colors = ['#dc3545', '#fd7e14', '#ffc107', '#0d6efd', '#198754'];
+            var labels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+
+            feedback.innerHTML = labels[strength - 1] || '';
+            feedback.style.color = colors[strength - 1] || 'black';
+        }
+    </script>
+}
